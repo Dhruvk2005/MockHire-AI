@@ -1,12 +1,11 @@
 import React from 'react'
 
-const page = () => {
+const Mainbody = () => {
   return (
     <div>
-        <div></div>
       
     </div>
   )
 }
 
-export default page
+export default Mainbody
