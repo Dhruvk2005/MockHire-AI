@@ -1,11 +1,11 @@
 "use client";
-import { ParallaxHeroImages } from "./ui/paralax-hero-images";
 
 
-export function ParallaxHeroImagesDemo() {
+
+export function Mainbody() {
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-neutral-50 dark:bg-neutral-950">
-      <ParallaxHeroImages images={images} />
+    <div className="absolute top-0 lg:top-30 flex min-h-screen w-full items-center justify-center overflow-hidden ">
+      
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 sm:px-6 lg:px-8 text-center">
 
         {/* Headline */}
