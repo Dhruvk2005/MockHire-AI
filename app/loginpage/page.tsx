@@ -10,6 +10,8 @@ const Login = () => {
       className="min-h-screen w-full bg-black bg-cover bg-center bg-no-repeat flex items-center justify-center px-4 py-10"
       style={{ backgroundImage: "url('/bg.jpg')" }}
     >
+        
+            
       <div className="w-full max-w-md bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl p-8 sm:p-10">
 
         {/* Header */}
@@ -95,6 +97,11 @@ const Login = () => {
           </Link>
         </p>
       </div>
+      <span className='absolute  top-0 p-[20px]  hover:cursor-pointer ' >
+                <Link href={'/'}>
+
+                Back to mainscreen
+                </Link></span>
     </div>
   )
 }

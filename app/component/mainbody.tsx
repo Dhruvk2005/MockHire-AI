@@ -1,20 +1,40 @@
 "use client";
 
+import TextType from "./ui/TextType ";
+
 
 
 export function Mainbody() {
   return (
     <div className="absolute top-0 lg:top-30 flex min-h-screen w-full items-center justify-center overflow-hidden ">
-      
+
       <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 sm:px-6 lg:px-8 text-center">
 
         {/* Headline */}
-        <span className="block text-4xl sm:text-6xl lg:text-8xl font-semibold leading-tight bg-gradient-to-r from-white via-white to-gray-400 bg-clip-text text-transparent">
+        <span className="block  text-4xl sm:text-6xl lg:text-8xl font-semibold leading-tight bg-gradient-to-r from-white via-white to-gray-400 bg-clip-text text-transparent">
           Master Job Interview with
         </span>
-        <span className="block text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-[#22C55E] via-[#22C55E] to-green-900 bg-clip-text text-transparent">
+        {/* <span className="block text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight bg-gradient-to-r from-[#22C55E] via-[#22C55E] to-green-900 bg-clip-text text-transparent">
           AI-Powered Practice Sessions
-        </span>
+        </span> */}
+
+        <div>
+
+
+          <TextType
+            text={["AI-Powered Practice Session", "Human-like AI Interview Simulation", "AI Mock Interviews", "Body Language & Communication Analysis", "Career Guidance"]}
+            typingSpeed={80}
+            pauseDuration={1500}
+            showCursor
+            cursorCharacter="_"
+            texts={["Welcome to React Bits! Good to see you!", "Build some amazing experiences!"]}
+            deletingSpeed={50}
+            variableSpeedEnabled={false}
+            variableSpeedMin={60}
+            variableSpeedMax={120}
+            cursorBlinkDuration={0.5}
+          />
+        </div>
 
         {/* Subtitle */}
         <p className="mt-2 max-w-xs sm:max-w-lg lg:max-w-2xl text-sm sm:text-base text-neutral-600 drop-shadow-[0_0_10px_rgba(255,255,255,0.6)] dark:text-neutral-400 dark:drop-shadow-[0_0_10px_rgba(0,0,0,0.6)]">
