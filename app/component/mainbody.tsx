@@ -3,10 +3,15 @@
 import { div } from "motion/react-client";
 import AIInterviewFeatures from "./ui/featuresection";
 import TextType from "./ui/TextType ";
+import { MagneticButton } from "./ui/magnetic-button";
+import { MagneticButtonDemo } from "./ui/magbutton";
 
 
 
 export function Mainbody() {
+
+
+
   return (
     <div>
       <div className="absolute top-0 lg:top-30 flex min-h-screen w-full items-center justify-center overflow-hidden ">
@@ -51,6 +56,8 @@ export function Mainbody() {
               <button className="w-full sm:w-auto px-6 py-4 sm:py-5 bg-[#22C55E] text-base sm:text-xl text-black font-semibold rounded-[10px] hover:cursor-pointer hover:scale-105 transition-all duration-200">
                 Explore more
               </button>
+
+
               <button className="w-full sm:w-auto px-6 py-4 sm:py-5 border-white/5 border-[2px] text-base sm:text-xl font-semibold rounded-[10px] hover:bg-white/5 hover:cursor-pointer transition-all duration-200">
                 Contact support
               </button>

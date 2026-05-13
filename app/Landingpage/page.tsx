@@ -10,13 +10,22 @@ import { BackgroundLines } from '../component/ui/paralax-hero-images'
 const LandingPage = () => {
   return (
     <div>
-      <Navbar/>
-      
-  
+      <Navbar />
 
-      <BackgroundLines/>
-      <Mainbody/>
-      <Footer/>
+
+
+      <BackgroundLines />
+      <div className='flex flex-col'>
+        <div>
+
+          <Mainbody />
+        </div>
+        <div  className=''>
+
+          {/* <Footer /> */}
+        </div>
+
+      </div>
     </div>
   )
 }
