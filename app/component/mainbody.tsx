@@ -5,6 +5,7 @@ import AIInterviewFeatures from "./ui/featuresection";
 import TextType from "./ui/TextType ";
 import { MagneticButton } from "./ui/magnetic-button";
 import { MagneticButtonDemo } from "./ui/magbutton";
+import BentoGrid from "./ui/BentoGrid";
 
 
 
@@ -70,6 +71,7 @@ export function Mainbody() {
       </div>
       <div className="-my-[200px]" >
         <AIInterviewFeatures />
+        <BentoGrid/>
       </div>
     </div>
 
