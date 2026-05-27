@@ -6,6 +6,7 @@ import TextType from "./ui/TextType ";
 import { MagneticButton } from "./ui/magnetic-button";
 import { MagneticButtonDemo } from "./ui/magbutton";
 import BentoGrid from "./ui/BentoGrid";
+import { TextHoverEffect } from "./ui/text-hover-effect";
 
 
 
@@ -15,7 +16,7 @@ export function Mainbody() {
 
   return (
     <div>
-      <div className="absolute top-0 lg:top-30 flex min-h-screen w-full items-center justify-center overflow-hidden ">
+      <div className="absolute top-0 lg:top-30  min-h-screen w-full items-center justify-center overflow-hidden ">
 
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 sm:px-6 lg:px-8 text-center">
 
@@ -68,11 +69,16 @@ export function Mainbody() {
         </div>
 
 
+      <div className="my-[50px] " >
+        {/* <AIInterviewFeatures /> */}
+        <TextHoverEffect text="MockHire"/>
+        <BentoGrid />
       </div>
-      <div className="-my-[200px]" >
-        <AIInterviewFeatures />
-        <BentoGrid/>
+      <div className="text-[grey] text-center ">
+        Design and developed by <b className="text-white" >Dhruv K.</b> 
       </div>
+      </div>
+
     </div>
 
   );
