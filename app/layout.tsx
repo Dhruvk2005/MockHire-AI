@@ -26,21 +26,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <ConvexClientProvider>
-          <Provider>
-            {children}
-          </Provider>
-
-          
-        </ConvexClientProvider>
-        </body>
+        <ClerkProvider>
+          <ConvexClientProvider>
+            <Provider>{children}</Provider>
+          </ConvexClientProvider>
+        </ClerkProvider>
+      </body>
     </html>
-
   );
 }

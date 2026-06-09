@@ -1,10 +1,6 @@
 "use client";
 
-import { div } from "motion/react-client";
-import AIInterviewFeatures from "./ui/featuresection";
 import TextType from "./ui/TextType ";
-import { MagneticButton } from "./ui/magnetic-button";
-import { MagneticButtonDemo } from "./ui/magbutton";
 import BentoGrid from "./ui/BentoGrid";
 import { TextHoverEffect } from "./ui/text-hover-effect";
 
@@ -37,11 +33,8 @@ export function Mainbody() {
               pauseDuration={1500}
               showCursor
               cursorCharacter="_"
-              texts={["Welcome to React Bits! Good to see you!", "Build some amazing experiences!"]}
               deletingSpeed={50}
-              variableSpeedEnabled={false}
-              variableSpeedMin={60}
-              variableSpeedMax={120}
+              variableSpeed={{ min: 60, max: 120 }}
               cursorBlinkDuration={0.5}
             />
           </div>
