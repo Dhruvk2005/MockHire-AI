@@ -6,7 +6,7 @@ const Navbar = async () => {
   const { userId } = await auth();
 
   return (
-    <div className="flex w-full items-center justify-between border-b-[2px] border-white/5 bg-[#000000] p-[20px]">
+    <div className="flex w-full items-center absolute top-0 justify-between  border-b-[2px] border-white/5 bg-[#000000] p-[20px]">
       <Link href="/" className="text-[30px] font-semibold">
         MockHire AI
       </Link>

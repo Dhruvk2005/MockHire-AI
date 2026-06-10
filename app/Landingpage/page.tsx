@@ -1,4 +1,3 @@
-'use client'
 import React from 'react'
 import Navbar from '../component/navbar'
 // import Mainbody from '../component/mainbody'
