@@ -3,6 +3,7 @@
 import TextType from "./ui/TextType ";
 import BentoGrid from "./ui/BentoGrid";
 import { TextHoverEffect } from "./ui/text-hover-effect";
+import Link from "next/link";
 
 
 
@@ -48,9 +49,11 @@ export function Mainbody() {
           {/* CTA Buttons */}
           <section className="mt-8 sm:mt-10 lg:mt-12">
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-5 items-center">
+              <Link href={"/dashboard"} >
               <button className="w-full sm:w-auto px-6 py-4 sm:py-5 bg-[#22C55E] text-base sm:text-xl text-black font-semibold rounded-[10px] hover:cursor-pointer hover:scale-105 transition-all duration-200">
                 Explore more
               </button>
+              </Link>
 
 
               <button className="w-full sm:w-auto px-6 py-4 sm:py-5 border-white/5 border-[2px] text-base sm:text-xl font-semibold rounded-[10px] hover:bg-white/5 hover:cursor-pointer transition-all duration-200">
