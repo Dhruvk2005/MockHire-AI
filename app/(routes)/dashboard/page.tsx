@@ -1,7 +1,14 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Appheader from '../components/Appheader'
+import Createinterviewdialogue from '../components/createinterviewdialogue';
+
+
+
 
 const Dashboard = () => {
+
+  const [dialougeOpen, setDialougeOpen] = useState(false);
   return (
     <div>
 
@@ -30,12 +37,12 @@ const Dashboard = () => {
           <div className='flex flex-col items-center gap-[30px] p-[30] ' >
             <div className='flex flex-col items-center'>
 
-            <img className='h-[200px] w-[300px]' src="/interview.png" alt="" />
-            <h2 className='text-[grey]  '>you don't have any interview created</h2>
+              <img className='h-[200px] w-[300px]' src="/interview.png" alt="" />
+              <h2 className='text-[grey]  '>you don't have any interview created</h2>
             </div>
             <div className=''>
 
-            <button className=' text-[black] font-bold bg-[#22C55E] p-[10px] px-[20px] rounded-[10px] hover:cursor-pointer hover:scale-105 transition-all duration-200 ' >Create interview</button>
+              <button onClick={()=>setDialougeOpen(true)} className=' text-[black] font-bold bg-[#22C55E] p-[10px] px-[20px] rounded-[10px] hover:cursor-pointer hover:scale-105 transition-all duration-200 ' >Create interview</button>
             </div>
 
           </div>
@@ -43,7 +50,7 @@ const Dashboard = () => {
         </div>
 
       </div>
-
+      {dialougeOpen ? <Createinterviewdialogue setDialougeOpen  = {setDialougeOpen} />:""}
 
     </div>
   )
