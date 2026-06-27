@@ -13,7 +13,7 @@ export function Mainbody() {
 
   return (
     <div>
-      <div className="absolute top-40 lg:top-30  min-h-screen w-full items-center justify-center overflow-hidden ">
+      <div className="absolute top-40 lg:top-30 bg-[] min-h-screen w-full items-center justify-center overflow-hidden ">
 
         <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 sm:px-6 lg:px-8 text-center">
 

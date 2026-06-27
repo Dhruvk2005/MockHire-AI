@@ -29,7 +29,7 @@ const Dashboard = () => {
 
             </div>
             <div>
-              <button className=' text-[black] font-bold bg-[#22C55E] p-[10px] px-[20px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer ' >Create interview</button>
+              <button onClick={()=>setDialougeOpen(true)} className=' text-[black] font-bold bg-[#22C55E] p-[10px] px-[20px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer ' >Create interview</button>
             </div>
 
 
