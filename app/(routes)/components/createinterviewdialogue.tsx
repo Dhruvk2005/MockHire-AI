@@ -16,7 +16,7 @@ const Createinterviewdialogue = (props: any) => {
                         <div className='' >
                             <TabsList className={'text-[black] '} >
                                 <TabsTrigger className={'text-[grey]'} value="resume-upload">Resume upload</TabsTrigger>
-                                <TabsTrigger className={'text-[grey]'} value="Job-Description">Job Description</TabsTrigger>
+                                <TabsTrigger className={'text-[grey]'} value="Job-Description">Job Description  </TabsTrigger>
                             </TabsList>
                         </div>
                         <div className='ml-[8px]'>
