@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Resumeupload from './resumeupload'
 import Jobdescription from './jobdescription'
 const Createinterviewdialogue = (props: any) => {
+    const [formData, setFormData] = useState<any>();
 
+    const onHandleInputChange:any = (field: string, value: string) => {
+        setFormData((prev: any) => ({
+            ...prev,
+            [field]: value
+        }))
+    }
 
     return (
         <div className=' absolute top-0 z-20 bg-[#18181B66]  w-full h-full flex justify-center items-center'>
@@ -21,7 +28,7 @@ const Createinterviewdialogue = (props: any) => {
                         </div>
                         <div className='ml-[8px]'>
                             <TabsContent className={'text-[grey]  '} value="resume-upload"><Resumeupload /></TabsContent>
-                            <TabsContent className={'text-[grey]'} value="Job-Description"><Jobdescription /></TabsContent>
+                            <TabsContent className={'text-[grey]'} value="Job-Description"><Jobdescription onHandleInputChange={onHandleInputChange} /></TabsContent>
                         </div>
                         <div className=' flex justify-end gap-3 p-[10px] '>
                             <button onClick={() => props.setDialougeOpen(false)} className='text-[white]   p-[5px] px-[10px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer' >cancel</button>
