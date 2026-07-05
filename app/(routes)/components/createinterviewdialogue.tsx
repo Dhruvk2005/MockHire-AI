@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Resumeupload from './resumeupload'
 import Jobdescription from './jobdescription'
+import { File } from '@imagekit/nodejs/resources/index.mjs'
+import axios from 'axios'
 const Createinterviewdialogue = (props: any) => {
     const [formData, setFormData] = useState<any>();
+    const[file,setFile] = useState<any>()
+    const [loading, setLoading] = useState(false);
 
     const onHandleInputChange:any = (field: string, value: string) => {
         setFormData((prev: any) => ({
@@ -12,6 +16,21 @@ const Createinterviewdialogue = (props: any) => {
         }))
     }
 
+    const onSubmit =async()=>{
+        if(!file) return;
+        setLoading(true);
+        const formData = new FormData()
+        formData.append('file',file)
+        try{
+            const res = await axios.post('api/generate-interview-questions',formData)
+            console.log(res.data)
+
+        }catch(e){
+            console.log(e)
+        }finally{
+            setLoading(false)
+        }
+    }
     return (
         <div className=' absolute top-0 z-20 bg-[#18181B66]  w-full h-full flex justify-center items-center'>
             <div className='w-[50%] bg-[black] text-[white] border-[#22C55E] border-[2px] flex flex-col gap-[5px] rounded-[20px] p-[15px]' >
@@ -27,12 +46,12 @@ const Createinterviewdialogue = (props: any) => {
                             </TabsList>
                         </div>
                         <div className='ml-[8px]'>
-                            <TabsContent className={'text-[grey]  '} value="resume-upload"><Resumeupload /></TabsContent>
+                            <TabsContent className={'text-[grey]  '} value="resume-upload"><Resumeupload setFiles = {(file:File)=>setFile(file)} /></TabsContent>
                             <TabsContent className={'text-[grey]'} value="Job-Description"><Jobdescription onHandleInputChange={onHandleInputChange} /></TabsContent>
                         </div>
                         <div className=' flex justify-end gap-3 p-[10px] '>
                             <button onClick={() => props.setDialougeOpen(false)} className='text-[white]   p-[5px] px-[10px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer' >cancel</button>
-                            <button className='text-[black]  bg-[#22C55E] p-[5px] px-[10px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer' >Submit</button>
+                            <button onClick={onSubmit} disabled = {loading || !file} className='text-[black]  bg-[#22C55E] p-[5px] px-[10px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer' >Submit</button>
                         </div>
 
 
