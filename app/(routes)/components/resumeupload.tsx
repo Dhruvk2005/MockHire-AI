@@ -7,7 +7,7 @@ import { useState } from 'react';
 const Resumeupload = ({ setFiles }: any) => {
     // const [files, setFiles] = useState<File[]>([]);
     const handleFileUpload = (files: File[]) => {
-        setFiles(files);
+        setFiles(files[0]);
         console.log(files);
     };
     return (
