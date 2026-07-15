@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import ImageKit from "imagekit";
 
 const imagekit = new ImageKit({
-  publicKey: process.env.IMAGEKIT_PUBLIC_KEY!,
-  privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
+  publicKey: process.env.IMAGEKIT_URL_PUBLIC_KEY!,
+  privateKey: process.env.IMAGEKIT_URL_PRIVATE_KEY!,
   urlEndpoint: process.env.IMAGEKIT_URL_ENDPOINT!,
 });
 
@@ -47,9 +47,8 @@ export async function POST(req: NextRequest) {
       }
     );
   } catch (error: any) {
-    console.error("UPLOAD ERROR");
-    console.error(error);
-
+    
+    
     return NextResponse.json(
       {
         success: false,
