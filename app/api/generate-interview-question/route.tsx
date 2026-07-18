@@ -37,6 +37,9 @@ export async function POST(req: NextRequest) {
 
     console.log(uploadResponse);
 
+
+    
+
     return NextResponse.json(
       {
         success: true,
@@ -47,16 +50,17 @@ export async function POST(req: NextRequest) {
       }
     );
   } catch (error: any) {
-    
-    
+    console.error("========== ERROR ==========");
+    console.error(error);
+    console.error("Message:", error?.message);
+    console.error("Stack:", error?.stack);
+
     return NextResponse.json(
       {
         success: false,
-        error: error.message,
+        error: error?.message,
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }

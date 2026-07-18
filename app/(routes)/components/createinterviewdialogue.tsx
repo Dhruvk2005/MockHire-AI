@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import Resumeupload from './resumeupload'
 import Jobdescription from './jobdescription'
-import { File } from '@imagekit/nodejs/resources/index.mjs'
+
 import axios from 'axios'
 const Createinterviewdialogue = (props: any) => {
     const [formData, setFormData] = useState<any>();
@@ -29,7 +29,7 @@ const Createinterviewdialogue = (props: any) => {
             form.append("file", file);
 
             const res = await axios.post(
-                "/api/generate-interview-questions",
+                "/api/generate-interview-question",
                 form,
                 {
                     headers: {
