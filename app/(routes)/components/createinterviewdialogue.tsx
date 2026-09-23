@@ -17,38 +17,43 @@ const Createinterviewdialogue = (props: any) => {
     }
 
     const onSubmit = async () => {
-        if (!file) {
-            alert("Please select a PDF");
-            return;
+    try {
+        setLoading(true);
+
+        const formData_ = new FormData();
+
+        if (file) {
+            formData_.append("file", file);
         }
 
-        try {
-            setLoading(true);
+        formData_.append("jobTitle", formData?.jobTitle || "");
+        formData_.append("jobDescription", formData?.jobDescription || "");
 
-            const form = new FormData();
-            form.append("file", file);
+        console.log("Sending data:");
+        console.log("File:", file);
+        console.log("Job Title:", formData?.jobTitle);
+        console.log("Job Description:", formData?.jobDescription);
 
-            const res = await axios.post(
-                "/api/generate-interview-question",
-                form,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+        const res = await axios.post(
+            "/api/generate-interview-question",
+            formData_
+        );
 
-            console.log(res.data);
+        console.log("API RESPONSE:", res.data);
 
-            alert("Uploaded Successfully");
+        alert("Submitted Successfully");
 
-        } catch (error: any) {
-            console.error(error);
-            alert(error.response?.data?.error || "Upload Failed");
-        } finally {
-            setLoading(false);
-        }
-    };
+    } catch (error: any) {
+        console.error("SUBMIT ERROR:", error);
+
+        alert(
+            error.response?.data?.error ||
+            "Submission Failed"
+        );
+    } finally {
+        setLoading(false);
+    }
+};
     return (
         <div className=' absolute top-0 z-20 bg-[#18181B66]  w-full h-full flex justify-center items-center'>
             <div className='w-[50%] bg-[black] text-[white] border-[#22C55E] border-[2px] flex flex-col gap-[5px] rounded-[20px] p-[15px]' >
@@ -69,7 +74,13 @@ const Createinterviewdialogue = (props: any) => {
                         </div>
                         <div className=' flex justify-end gap-3 p-[10px] '>
                             <button onClick={() => props.setDialougeOpen(false)} className='text-[white]   p-[5px] px-[10px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer' >cancel</button>
-                            <button onClick={onSubmit} disabled={loading || !file} className='text-[black]  bg-[#22C55E] p-[5px] px-[10px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer' >Submit</button>
+                            <button
+                                onClick={onSubmit}
+                                disabled={loading}
+                                className='text-[black] bg-[#22C55E] p-[5px] px-[10px] rounded-[10px] hover:scale-105 transition-all duration-200 cursor-pointer'
+                            >
+                                {loading ? "Submitting..." : "Submit"}
+                            </button>
                         </div>
 
 

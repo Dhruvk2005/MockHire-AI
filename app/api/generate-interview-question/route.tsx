@@ -19,100 +19,127 @@ export async function POST(req: NextRequest) {
     const formData = await req.formData();
 
     const file = formData.get("file") as File | null;
+    const jobTitle = formData.get("jobTitle") as string | null;
+    const jobDescription = formData.get("jobDescription") as string | null;
 
-    if (!file) {
-      console.log("❌ No file received");
+    if (file) {
+
+
+
+      console.log("✅ File received");
+      console.log("File name:", file.name);
+      console.log("File size:", file.size);
+      console.log("File type:", file.type);
+
+
+
+      console.log("================================");
+      console.log("2. Converting file to buffer");
+      console.log("================================");
+
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      console.log("✅ Buffer created");
+      console.log("Buffer size:", buffer.length);
+
+
+
+      console.log("================================");
+      console.log("3. Uploading to ImageKit");
+      console.log("================================");
+
+      const uploadResponse = await imagekit.upload({
+        file: buffer,
+        fileName: `resume-${Date.now()}.pdf`,
+        useUniqueFileName: true,
+        isPrivateFile: false,
+      });
+
+      console.log("✅ ImageKit upload successful");
+      console.log("ImageKit URL:", uploadResponse.url);
+      console.log("File ID:", uploadResponse.fileId);
+
+      if (!uploadResponse.url) {
+        throw new Error("ImageKit did not return a URL");
+      }
+
+
+
+      console.log("================================");
+      console.log("4. Sending URL to n8n");
+      console.log("================================");
+
+      const webhookUrl =
+        "http://localhost:5678/webhook/e80f9b48-9dcf-4be4-bf6e-a1a50baa5ef5";
+
+      console.log("Webhook URL:", webhookUrl);
+
+     const n8nResponse = await axios.post(
+    webhookUrl,
+    {
+        resumeUrl: uploadResponse.url,
+        jobTitle: jobTitle,
+        jobDescription: jobDescription
+    },
+    {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        timeout: 60000,
+    }
+);
+
+      console.log("================================");
+      console.log("5. n8n RESPONSE");
+      console.log("================================");
+
+      console.log("Status:", n8nResponse.status);
+      console.log("Data:", n8nResponse.data);
+
+
 
       return NextResponse.json(
         {
-          success: false,
-          step: "file",
-          error: "No file uploaded",
+          success: true,
+          message: "Resume uploaded and sent to n8n successfully",
+          resumeUrl: uploadResponse.url,
+          jobTitle,
+          jobDescription,
+          n8nResponse: n8nResponse.data,
         },
-        { status: 400 }
+        { status: 200 }
       );
-    }
 
-    console.log("✅ File received");
-    console.log("File name:", file.name);
-    console.log("File size:", file.size);
-    console.log("File type:", file.type);
+    } else {
 
-   
+      const webhookUrl =
+        "http://localhost:5678/webhook/e80f9b48-9dcf-4be4-bf6e-a1a50baa5ef5";
 
-    console.log("================================");
-    console.log("2. Converting file to buffer");
-    console.log("================================");
+      console.log("Webhook URL:", webhookUrl);
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
-    console.log("✅ Buffer created");
-    console.log("Buffer size:", buffer.length);
-
-  
-
-    console.log("================================");
-    console.log("3. Uploading to ImageKit");
-    console.log("================================");
-
-    const uploadResponse = await imagekit.upload({
-      file: buffer,
-      fileName: `resume-${Date.now()}.pdf`,
-      useUniqueFileName: true,
-      isPrivateFile: false,
-    });
-
-    console.log("✅ ImageKit upload successful");
-    console.log("ImageKit URL:", uploadResponse.url);
-    console.log("File ID:", uploadResponse.fileId);
-
-    if (!uploadResponse.url) {
-      throw new Error("ImageKit did not return a URL");
-    }
-
-    
-
-    console.log("================================");
-    console.log("4. Sending URL to n8n");
-    console.log("================================");
-
-    const webhookUrl =
-      "http://localhost:5678/webhook/e80f9b48-9dcf-4be4-bf6e-a1a50baa5ef5";
-
-    console.log("Webhook URL:", webhookUrl);
-
-    const n8nResponse = await axios.post(
-      webhookUrl,
-      {
-        resumeUrl: uploadResponse.url,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+      const n8nResponse = await axios.post(
+        webhookUrl,
+        {
+          resumeUrl: null,
+          jobTitle: jobTitle,
+          jobDescription: jobDescription
         },
-        timeout: 60000,
-      }
-    );
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          timeout: 60000,
+        }
+      );
 
-    console.log("================================");
-    console.log("5. n8n RESPONSE");
-    console.log("================================");
-
-    console.log("Status:", n8nResponse.status);
-    console.log("Data:", n8nResponse.data);
-
-
-
-    return NextResponse.json(
-      {
+      return NextResponse.json({
         success: true,
-        message: "Resume uploaded and sent to n8n successfully",
-        resumeUrl: uploadResponse.url,
+        message: "Job description sent to n8n successfully",
         n8nResponse: n8nResponse.data,
-      },
-      { status: 200 }
-    );
+      });
+
+    }
   } catch (error: any) {
     console.log("================================");
     console.log("❌ ERROR OCCURRED");
@@ -147,9 +174,9 @@ export async function POST(req: NextRequest) {
 
         axiosError: axios.isAxiosError(error)
           ? {
-              status: error.response?.status || null,
-              data: error.response?.data || null,
-            }
+            status: error.response?.status || null,
+            data: error.response?.data || null,
+          }
           : null,
       },
       {
